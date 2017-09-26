@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import _ from "lodash";
 
 import bookList from '../data/books';
 
@@ -10,12 +11,13 @@ console.log(initialState);
 //STATE = NULL es6 syntax that says if state comes in undefined, it becomes null by default...
 //b/c redux does not allow to return undefined
 const ActiveBook = (state = null, action) => {
+    const newState = _.clone(state);
     switch (action.type) {
         case 'BOOK_SELECTED':
             return action.payload
+        default:
+            return newState;
     }
-    return state;
-
 }
 
 // can never return a mutated state in reducers..must be fresh state or original

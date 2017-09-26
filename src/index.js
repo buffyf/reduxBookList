@@ -1,17 +1,34 @@
+//react imports
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+import './styles/index.css';
+import './styles/App.css';
+
+//redux imports
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './reducers/bookReducer';
+//import promise from 'redux-promise';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+//react router imports
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+
+//components
+import App from './components/App';
+
+
+const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+//switch uses most specific route that matches, top down.
+
+ReactDOM.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <App />
+    </Provider>
+    , document.querySelector('#root'));
+
 registerServiceWorker();
-
-
-//select book is an action creator, it will need an action type
-export function selectBook(book) {
-
-    return {
-        //You should create a Type and Payload for your Action here
-    };
-}

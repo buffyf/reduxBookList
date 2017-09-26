@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectBook } from '../actions/index';
+import { selectBook } from '../actions/bookActions';
 //make sure action created flows through all reducers
 import { bindActionCreators } from 'redux';
 
